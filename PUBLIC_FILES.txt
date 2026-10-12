@@ -1,0 +1,12 @@
+main.tex
+main.pdf
+SUMMARY_ZH.md
+REFERENCES.md
+README.md
+RIGHTS_AND_LICENSE.md
+REPRODUCIBILITY.md
+verify.py
+verification_results.json
+verification_stdout.txt
+PUBLIC_FILES.txt
+SHA256SUMS.txt

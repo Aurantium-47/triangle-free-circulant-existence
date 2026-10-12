@@ -1,0 +1,370 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Triangle-free circulants with odd degree equal to their independence number},
+pdfauthor={},pdfsubject={A constructive proof of an existence statement for circulant graphs},
+pdfkeywords={circulant graph, triangle-free graph, independence number}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Cay}{\operatorname{Cay}}
+\title{Triangle-free circulants with odd degree\\equal to their independence number}
+\author{}
+\date{October 13, 2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+For every integer \(k\ge1\) and every even integer \(n\) satisfying
+\(6k+2\le n\le8k\), we construct a triangle-free circulant graph on \(n\)
+vertices whose degree and independence number both equal \(2k+1\).
+This proves the existence assertion in Conjecture~3.8 of
+Ayat, Ayat and Ghahramani (2020).
+For \(4\mid n\), the construction extends their upper-endpoint construction,
+and an upper bound on independent sets follows from circular gaps.
+For \(n\equiv2\pmod4\), a Chinese remainder isomorphism gives a two-layer
+description, and expansion by a cyclic interval gives the upper bound.
+The proof is elementary and does not depend on finite computation.
+No claim of bibliographic priority is made.
+\end{abstract}
+
+\section{Statement and relation to earlier constructions}
+
+Write \(\alpha(G)\) for the independence number of a finite simple graph \(G\).
+For \(S=-S\subseteq\Z_n\setminus\{0\}\), the circulant
+\(\Cay(\Z_n,S)\) has vertex set \(\Z_n\), with \(x\) adjacent to \(y\)
+if and only if \(y-x\in S\).
+Ayat, Ayat and Ghahramani call a triangle-free circulant whose independence
+number equals its degree an \(A\)-graph~\cite{Ayat2020}.
+Their Conjecture~3.8 is the following assertion.
+
+\begin{theorem}\label{thm:main}
+For every integer \(k\ge1\) and every even integer \(n\) with
+\[
+6k+2\le n\le8k,
+\]
+there is a simple undirected triangle-free circulant graph on \(n\) vertices
+that is \((2k+1)\)-regular and has independence number \(2k+1\).
+\end{theorem}
+
+Theorems~3.6 and~3.7 of~\cite{Ayat2020} establish the endpoints \(n=8k\)
+and \(n=6k+2\), respectively.
+Our construction for \(4\mid n\) retains the short odd jumps and the
+circular-gap argument of their \(n=8k\) construction, while replacing
+the single antipodal jump by an interval of even jumps.
+The lower endpoint also belongs to the classical Andr\'asfai family,
+whose order at degree \(d\) is \(3d-1\); see
+Theorem~11 of~\cite{Bickle2027}.
+Our proof treats every intermediate even \(n\), as well as both endpoints.
+
+Sidorenko's construction has even degree~\cite{Sidorenko1991};
+its exact circulant form is also stated in Theorem~3.5
+of~\cite{Ayat2020}.
+Brandt's Lemma~3.2~\cite{Brandt2010} realizes every rational
+order-to-degree ratio in \([3,4)\) by a Sidorenko graph.
+Specifying a ratio does not specify the order and the degree separately:
+for a ratio \(b/a\), that construction uses order \(4b\) and degree \(4a\).
+Thus it does not by itself give the prescribed odd degree in
+Theorem~\ref{thm:main}.
+
+A later paper of Bickle, Cream and Gould~\cite{Bickle2027},
+available online on July 21, 2026, restates the even-degree family,
+the Andr\'asfai family, and the odd-degree upper endpoint
+(Theorems~10--12). Its equal-size blow-ups preserve the relevant
+properties and circulant structure (Theorem~13 and Lemma~14).
+These results do not directly fill the whole prescribed parameter range.
+For example, at degree \(7\), the two endpoint families give orders \(20\)
+and \(24\), whereas Theorem~\ref{thm:main} also requires order \(22\).
+An even-degree graph still has even degree after such a blow-up.
+A nontrivial blow-up yielding degree \(7\) must start with degree \(1\)
+and use multiplicity \(7\); the relevant connected base graph is \(K_2\),
+giving order \(14\).
+This comparison concerns the coverage of these particular results;
+it is not a proof that no other earlier construction exists.
+The literature search was not exhaustive, and no priority claim is made.
+
+\section{Elementary tools}
+
+All sums of subsets below are taken in the indicated finite abelian group.
+A cyclic interval of length \(\ell\le m\) in \(\Z_m\) is a translate
+of \(\{0,1,\ldots,\ell-1\}\).
+
+\begin{lemma}\label{lem:triangle}
+Let \(S=-S\subseteq\Gamma\setminus\{0\}\), where \(\Gamma\) is a finite
+abelian group. The graph \(\Cay(\Gamma,S)\) is triangle-free if and only if
+\((S+S)\cap S=\varnothing\).
+Every nonempty triangle-free \(d\)-regular graph has independence number
+at least \(d\).
+\end{lemma}
+\begin{proof}
+If \(s,t,s+t\in S\), then \(0,s,s+t\) are three distinct vertices forming
+a triangle. Conversely, translate one vertex of a triangle to \(0\).
+If its other vertices are \(x,y\), then \(x,y,y-x\in S\), and
+\(y=x+(y-x)\in(S+S)\cap S\).
+For the last assertion, the \(d\) neighbors of any vertex form an
+independent set.
+\end{proof}
+
+\begin{lemma}\label{lem:interval}
+If \(\varnothing\ne A\subseteq\Z_m\) and \(J\) is a cyclic interval
+of length \(1\le\ell\le m\), then
+\[
+|A+J|\ge\min\{m,|A|+\ell-1\}.
+\]
+\end{lemma}
+\begin{proof}
+Translate \(J\) to \(\{0,\ldots,\ell-1\}\), without changing the
+cardinality of the sumset. Every nonempty proper subset \(B\) of \(\Z_m\)
+satisfies \(|B\cup(B+1)|\ge|B|+1\).
+Otherwise finiteness gives \(B+1=B\), and invariance under the generator
+\(1\) forces \(B=\Z_m\).
+Starting with \(B_0=A\), set \(B_j=A+\{0,\ldots,j\}\).
+Since \(B_{j+1}=B_j\cup(B_j+1)\), the size increases by at least one
+at each step until it reaches \(m\). This proves the bound.
+No primality assumption on \(m\) is needed.
+\end{proof}
+
+We also use the following edge count. If \(H\) is \(d\)-regular with \(d>0\)
+and \(I\) is independent, then
+\[
+d|I|=e(I,V(H)\setminus I)\le d|V(H)\setminus I|,
+\qquad\text{so}\qquad \alpha(H)\le |V(H)|/2.
+\tag{1}\label{eq:regular}
+\]
+
+\section{\texorpdfstring{The case \(n\equiv0\pmod4\)}{The case n congruent to 0 modulo 4}}
+
+Set
+\[
+r=\frac{8k-n}{4},\qquad a=k-r,\qquad m=\frac n2.
+\]
+Then \(k=a+r\), \(n=8a+4r\), and the parameter conditions are equivalent to
+\[
+a\ge1,\qquad 0\le r\le a-1.
+\tag{2}\label{eq:firstparameters}
+\]
+In \(\Z_n\), define
+\[
+L=\{\pm1,\pm3,\ldots,\pm(2a-1)\},\qquad
+E=\{m+2j:-r\le j\le r\},\qquad S=L\cup E.
+\tag{3}\label{eq:firstset}
+\]
+The elements of \(L\) are odd, whereas those of \(E\) are even.
+The latter have distinct integer representatives between
+\(m-2r=4a\) and \(m+2r=n-4a\).
+Both sets are symmetric and exclude \(0\), and neither has repeated
+residues in its defining list.
+Consequently \(G=\Cay(\Z_n,S)\) is a simple undirected circulant of degree
+\[
+|S|=2a+(2r+1)=2k+1.
+\]
+
+\subsection*{Triangle-freeness}
+
+Every element of \(E\) has circular distance at least \(4a\) from \(0\).
+Each element of \(L+L\) has an integer representative in
+\([-4a+2,4a-2]\), so \((L+L)\cap E=\varnothing\).
+Since \(2m=n\), each element of \(E+E\) has a representative in
+\([-4r,4r]\). By~\eqref{eq:firstparameters}, \(4r<4a\), and hence
+\((E+E)\cap E=\varnothing\).
+The directed edge differences around a triangle must sum to zero.
+Parity allows only two \(L\)-differences and one \(E\)-difference,
+or three \(E\)-differences. Symmetry reduces these possibilities to the
+two intersections just excluded. In particular, an equality
+\(l+e=l'\), with \(l,l'\in L\) and \(e\in E\), would give
+\(e=l'-l\in L+L\).
+Thus \(G\) is triangle-free.
+
+\subsection*{Independence number}
+
+Let \(I\) be an independent set and let \(s=|I|\).
+If all its vertices have the same parity, note that \(m\) is even and
+\(m\in S\). The antipodal edges \(\{x,x+m\}\) partition that parity class
+into \(n/4\) pairs. Hence
+\[
+s\le n/4=2a+r\le2a+2r+1=2k+1.
+\]
+The empty independent set satisfies this bound as well.
+
+Otherwise order the vertices of \(I\) around the circle and consider the
+\(s\) positive gaps, including the gap from the last vertex back to the
+first. Their sum is \(n\). The number \(q\) of odd gaps is at least two,
+because a circular sequence containing both parities has at least two
+parity changes. Each even gap is at least \(2\), and each odd gap is at
+least \(2a+1\), since the smaller positive odd differences belong to \(L\).
+As \(a\ge1\), this gives
+\[
+n\ge2(s-q)+(2a+1)q
+ =2s+(2a-1)q\ge2s+4a-2.
+\]
+It follows that
+\[
+s\le\frac{n-4a+2}{2}=2a+2r+1=2k+1.
+\]
+The opposite inequality follows from Lemma~\ref{lem:triangle}.
+Therefore \(\alpha(G)=2k+1\).
+
+\section{\texorpdfstring{The case \(n\equiv2\pmod4\)}{The case n congruent to 2 modulo 4}}
+
+Set
+\[
+m=\frac n2,\qquad t=\frac{n-4k+2}{4}.
+\]
+Then \(m\) is odd, \(t\) is an integer, and
+\[
+m=2k+2t-1,\qquad t\le k\le2t-2.
+\tag{4}\label{eq:secondparameters}
+\]
+Indeed, the lower bound on \(n\) gives \(k\le2t-2\), while this residue
+class has \(n\le8k-2\), giving \(t\le k\).
+In particular \(t\ge2\), so this case has no parameter with \(k=1\).
+
+Since \(m\) is odd, the Chinese remainder theorem gives a group isomorphism
+\[
+\phi:\Z_{2m}\longrightarrow\Z_m\times\Z_2,\qquad
+x\longmapsto(x\bmod m,x\bmod2).
+\]
+In \(\Z_m\), put
+\[
+T=\{-(t-1),\ldots,t-1\},\qquad U=\{2t-1,2t,\ldots,2k\},
+\]
+and define
+\[
+Q=(T\times\{1\})\cup(U\times\{0\}).
+\tag{5}\label{eq:secondset}
+\]
+Both intervals have distinct residues. We have \(T=-T\) and \(m-U=U\);
+thus \(Q=-Q\), and \(Q\) does not contain the identity \((0,0)\).
+Although \(0\in T\), its second coordinate is \(1\), so it creates no loop.
+Moreover,
+\[
+|Q|=(2t-1)+(2k-2t+2)=2k+1.
+\]
+The graph \(G=\Cay(\Z_m\times\Z_2,Q)\) is therefore a simple undirected
+\((2k+1)\)-regular circulant through \(\phi\).
+Equivalently, its connection set on \(\Z_n\) is
+\[
+S=\{x\in\{1,\ldots,n-1\}:
+ (x\text{ odd and }x\bmod m\in T)
+ \text{ or }(x\text{ even and }x\bmod m\in U)\}.
+\tag{6}\label{eq:directcrt}
+\]
+
+\subsection*{Triangle-freeness}
+
+The second coordinates of the three directed edge differences around a
+triangle sum to \(0\) in \(\Z_2\). A triangle therefore has either two
+cross-layer edges or none.
+
+For two cross-layer edges, it is enough, by symmetry, to check
+\((T+T)\cap U=\varnothing\).
+Each element of \(T+T\) has an integer representative in
+\([-2t+2,2t-2]\).
+Its nonnegative representatives are below \(2t-1\), and its negative
+representatives become at least \(m-(2t-2)=2k+1\) after reduction modulo
+\(m\). Both parts avoid \(U\).
+
+For three edges within a layer, the integer sums from \(U+U\) lie in
+\([4t-2,4k]\).
+If a sum has not wrapped around modulo \(m\), it exceeds \(2k\), since
+\(4t-2>2k\) by~\eqref{eq:secondparameters}.
+After one wrap it is at most
+\[
+4k-m=2k-2t+1\le2t-3<2t-1.
+\]
+There cannot be two wraps, because \(4k<2m\).
+Thus \((U+U)\cap U=\varnothing\).
+The graph is triangle-free and has independence number at least \(2k+1\).
+
+\subsection*{Independence number}
+
+Write an arbitrary independent set as
+\[
+(A\times\{0\})\cup(B\times\{1\}),\qquad A,B\subseteq\Z_m.
+\]
+If both \(A\) and \(B\) are nonempty, the absence of cross-layer edges gives
+\(B\cap(A+T)=\varnothing\).
+By Lemma~\ref{lem:interval},
+\[
+|A+T|\ge\min\{m,|A|+2t-2\}.
+\]
+Because \(B\ne\varnothing\), the sumset is not all of \(\Z_m\).
+Consequently \(|A|+2t-2<m\), and
+\[
+|A|+|B|\le |A|+m-|A+T|\le m-2t+2=2k+1.
+\]
+
+If one layer is empty, the independent set lies in
+\(H=\Cay(\Z_m,U)\), whose degree is
+\(2(k-t+1)\ge2\).
+Applying~\eqref{eq:regular} and using \(m\) odd yields
+\[
+|A|+|B|\le\lfloor m/2\rfloor=k+t-1\le2k-1<2k+1.
+\]
+This also includes the empty independent set.
+Combining the bounds proves \(\alpha(G)=2k+1\).
+
+\section{Endpoints, verification and status}
+
+Every even \(n\) belongs to exactly one of the two cases, which proves
+Theorem~\ref{thm:main}. For clarity, the boundary parameters are as follows.
+When \(k=1\), the only allowed order is \(8\), and the first construction
+has \(a=1,r=0,S=\{1,4,7\}\).
+At \(n=8k\), the first construction has \(a=k,r=0\).
+At \(n=6k+2\), odd \(k\) gives \(a=(k+1)/2,r=(k-1)/2=a-1\),
+whereas even \(k\) gives \(t=(k+2)/2\) and \(k=2t-2\).
+The largest order in the second residue class is \(8k-2\), for \(k\ge2\);
+here \(t=k\), and the within-layer degree remains \(2\).
+All strict inequalities used in the proof remain valid at these endpoints.
+
+The accompanying standard-library Python program implements the two
+displayed connection sets directly and computes exact independence
+numbers by the deletion recurrence
+\[
+\alpha(G[P])=\max\bigl\{\alpha(G[P\setminus\{v\}]),
+  1+\alpha(G[P\setminus N[v]])\bigr\}.
+\]
+It does not use the asserted bound \(2k+1\) to prune the search.
+The supplied reproducibility files record a run over all \(21\) allowed
+pairs with \(1\le k\le6\).
+Such finite checks test the implementation; they do not establish the
+unbounded theorem, whose proof is given above.
+
+This work was prepared with AI assistance.
+It has not yet been reviewed by a human expert or formalized in a proof
+assistant. The comparison with the cited literature does not establish
+bibliographic priority.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{Ayat2020}
+S.~Masih Ayat, S.~Majid Ayat and M.~Ghahramani,
+The independence number of circulant triangle-free graphs,
+\emph{AIMS Mathematics} \textbf{5}(4) (2020), 3741--3750.
+\href{https://doi.org/10.3934/math.2020242}{doi:10.3934/math.2020242}.
+
+\bibitem{Sidorenko1991}
+A.~F.~Sidorenko,
+Triangle-free regular graphs,
+\emph{Discrete Mathematics} \textbf{91}(2) (1991), 215--217.
+\href{https://www.sciencedirect.com/science/article/pii/0012365X9190114H}{Publisher record}.
+
+\bibitem{Brandt2010}
+S.~Brandt,
+Triangle-free graphs whose independence number equals the degree,
+\emph{Discrete Mathematics} \textbf{310} (2010), 662--669.
+\href{https://doi.org/10.1016/j.disc.2009.05.021}{doi:10.1016/j.disc.2009.05.021}.
+
+\bibitem{Bickle2027}
+A.~Bickle, M.~Cream and R.~J.~Gould,
+Chorded cycles in Chv\'atal--Erd\H{o}s graphs,
+\emph{Discrete Mathematics} \textbf{350}(1) (2027), article 115336.
+Available online July 21, 2026.
+\href{https://doi.org/10.1016/j.disc.2026.115336}{doi:10.1016/j.disc.2026.115336}.
+\end{thebibliography}
+\end{document}
+
