@@ -35,7 +35,7 @@ jobs:
           import hashlib, json, os, pathlib, shutil, subprocess
           root = pathlib.Path('public-source')
           baseline = '020b52bb138ad0df898e66fdfd06ecb54fd165aa'
-          expected = {'lean-candidate/ImportProbe.lean': 'cf1539588c915deb5b9811e8d37b9e0e90a2c27e6f2fc4db9b7c4472729f329f', 'lean-candidate/lake-manifest.json': '4c20a46d3c85a50c3b0d515d9aa6b6813a6e0e8e6ebc0bf87c8ad8b03570e1ea', 'lean-candidate/lakefile.toml': '7b8ad36db96f180a8661e2c75be0942a2e2f2614fbd131b8a30ec2599425e6e5', 'lean-candidate/lean-toolchain': '55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea', 'lean-candidate/W16/CircularGaps.lean': 'a06b81628fc95bdd04735335957f6db25d1a02269253755ef0e7cf8dfdd81328'}
+          expected = {'lean-candidate/ImportProbe.lean': 'cf1539588c915deb5b9811e8d37b9e0e90a2c27e6f2fc4db9b7c4472729f329f', 'lean-candidate/lake-manifest.json': '4c20a46d3c85a50c3b0d515d9aa6b6813a6e0e8e6ebc0bf87c8ad8b03570e1ea', 'lean-candidate/lakefile.toml': '7b8ad36db96f180a8661e2c75be0942a2e2f2614fbd131b8a30ec2599425e6e5', 'lean-candidate/lean-toolchain': '55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea', 'lean-candidate/W16/CircularGaps.lean': 'a06b81628fc95bdd04735335957f6db25d1a02269253755ef0e7cf8dfdd81328', 'lean-candidate/W16/SortedCircularGaps.lean': '32428839c5759296176e3cc6eaf70db05d8a126977f6e7f5f2e6785d8766f782'}
           workflow = '.github/workflows/w16-circular-gaps-probe.yml'
           changed = subprocess.check_output(['git', '-C', str(root), 'diff', '--name-status', baseline, 'HEAD'], text=True).splitlines()
           assert set(changed) == {'A\t' + p for p in list(expected) + [workflow]}, changed
@@ -114,7 +114,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          timeout --signal=TERM --kill-after=10s 900 /usr/bin/time -v lake exe cache get Mathlib.Combinatorics.SimpleGraph.Circulant Mathlib.Combinatorics.SimpleGraph.Clique Mathlib.Data.ZMod.Basic Mathlib.Data.Finset.Sort Mathlib.Algebra.BigOperators.Group.Finset.Basic Mathlib.Algebra.BigOperators.Group.Finset.Piecewise Mathlib.Algebra.Group.Int.Defs Mathlib.Data.Fintype.Fin
+          timeout --signal=TERM --kill-after=10s 900 /usr/bin/time -v lake exe cache get Mathlib.Combinatorics.SimpleGraph.Circulant Mathlib.Combinatorics.SimpleGraph.Clique Mathlib.Data.ZMod.Basic Mathlib.Data.Finset.Sort Mathlib.Algebra.BigOperators.Group.Finset.Basic Mathlib.Algebra.BigOperators.Group.Finset.Piecewise Mathlib.Algebra.Group.Int.Defs Mathlib.Data.Fintype.Fin Mathlib.Logic.Equiv.Fin.Rotate Mathlib.Algebra.Order.Group.Int Mathlib.Algebra.Order.Group.Defs Mathlib.Order.Monotone.Defs
           git diff --exit-code HEAD -- lake-manifest.json lean-toolchain lakefile.toml
           printf '%s\n' 'TRUST: external caches are precompiled inputs, not dependency source rebuilds or independent kernel checks.'
 
@@ -126,8 +126,8 @@ jobs:
           python3 - <<'PY'
           import hashlib, json, os, pathlib, re, signal, subprocess, time
           root = pathlib.Path.cwd()
-          own = ['ImportProbe', 'W16.CircularGaps']
-          expected_names = ['W16.sum_circularGaps']
+          own = ['ImportProbe', 'W16.CircularGaps', 'W16.SortedCircularGaps']
+          expected_names = ['W16.sum_circularGaps', 'W16.sortedCircularGap_pos', 'W16.sortedCircularGaps_pos_sum']
           expected = json.loads((root.parent.parent / 'candidate-hashes.json').read_text())
           output = root / 'fresh-candidate'
           assert not output.exists()
@@ -233,7 +233,7 @@ jobs:
 
           probe = root / 'FreshW16Audit.lean'
           assert not probe.exists()
-          probe.write_text('import ImportProbe\nimport W16.CircularGaps\n\nset_option pp.all true\n#print W16.circularGap\n#check @W16.sum_circularGaps\n#print axioms W16.sum_circularGaps\n')
+          probe.write_text('import ImportProbe\nimport W16.CircularGaps\nimport W16.SortedCircularGaps\n\nset_option pp.all true\n#print W16.circularGap\n#print W16.sortedCircularGap\n#check @W16.sum_circularGaps\n#print axioms W16.sum_circularGaps\n#check @W16.sortedCircularGap_pos\n#print axioms W16.sortedCircularGap_pos\n#check @W16.sortedCircularGaps_pos_sum\n#print axioms W16.sortedCircularGaps_pos_sum\n')
           print('PROBE_SHA256', sha(probe), flush=True)
           imports = run([lean, '--deps', str(probe)], 'actual-imports', 60)
           deps = [pathlib.Path(s.strip()).resolve() for s in imports.splitlines() if s.strip()]
@@ -250,15 +250,15 @@ jobs:
           for name in re.findall(r"^'([^']+)' does not depend on any axioms", text, re.M):
               assert name not in observed
               observed[name] = []
-          assert set(observed) == set(expected_names) and len(observed) == 1
+          assert set(observed) == set(expected_names) and len(observed) == 3
           assert all(set(a) <= {'propext', 'Classical.choice', 'Quot.sound'} for a in observed.values()), observed
           for name in expected_names:
               assert len(re.findall(r'^@?' + re.escape(name) + r'(?:\s|\.{|\(|\{|\[|:)', text, re.M)) == 1, name
           print('FINAL_AXIOMS_JSON', json.dumps(observed, sort_keys=True), flush=True)
           assert all(sha(root.parent / p) == h for p, h in expected.items())
           subprocess.run(['git', 'diff', '--exit-code', 'HEAD', '--'], cwd=root.parent, check=True)
-          print('PASS: import probe and the single circular-gap sum lemma compiled; full lemma type and transitive axioms observed.', flush=True)
-          print('SCOPE: telescoping sum with one wrap-around correction for any finite permutation. Positivity, sorted cyclic successor, parity changes, gap bound and the full A-graph theorem are not verified here.', flush=True)
+          print('PASS: import probe and all three circular-gap lemmas compiled; all full types and transitive axioms observed.', flush=True)
+          print('SCOPE: strictly increasing integer coordinates of span below circumference give positive sorted circular gaps, including the wrap, with total circumference. Finset/ZMod extraction, parity counts, independent-set bounds and the full A-graph theorem remain unverified.', flush=True)
           print('NOT PERFORMED: dependency source rebuild, full dependency replay, independent-kernel check, priority/minimality review.', flush=True)
           PY
 
