@@ -35,7 +35,7 @@ theorem second_cross_sum_disjoint
     calc
       z - a = (a + (j : ZMod m) - ((t - 1 : ℕ) : ZMod m)) - a := by rw [hau, huz]
       _ = (j : ZMod m) - ((t - 1 : ℕ) : ZMod m) := by
-        simp [sub_eq_add_neg, add_assoc, add_comm, add_left_comm]
+        rw [sub_right_comm, add_sub_cancel_left]
       _ = (q : ZMod m) := by simp only [q, Int.cast_sub, Int.cast_natCast]
   have hmem : (z, (1 : ZMod 2)) - (a, (0 : ZMod 2)) ∈ secondConnectionSet m k t := by
     apply Or.inl
@@ -56,7 +56,7 @@ theorem second_cross_sum_disjoint
   have hB : (z, (1 : ZMod 2)) ∈
       A.product ({0} : Finset (ZMod 2)) ∪ B.product ({1} : Finset (ZMod 2)) :=
     Finset.mem_union.mpr (Or.inr (Finset.mem_product.mpr ⟨hzB, Finset.mem_singleton_self _⟩))
-  exact hindep hA hB hne hadj
+  exact hindep (Finset.mem_union.mp hA) (Finset.mem_union.mp hB) hne hadj
 
 /-- The actual tagged union of two nonempty independent layers has at most 2k+1 vertices. -/
 theorem second_mixed_independent_card_bound
@@ -103,8 +103,8 @@ theorem second_mixed_independent_card_bound
     have h0 : p.2 = (0 : ZMod 2) := Finset.mem_singleton.mp (Finset.mem_product.mp hpA).2
     have h1 : p.2 = (1 : ZMod 2) := Finset.mem_singleton.mp (Finset.mem_product.mp hpB).2
     exact zero_ne_one (h0.symm.trans h1)
-  rw [Finset.card_union_of_disjoint hprod]
-  simp only [Finset.card_product, Finset.card_singleton, Nat.mul_one]
-  omega
+  simpa only [Finset.card_union_of_disjoint hprod, Finset.card_product,
+    Finset.card_singleton, Nat.mul_one] using
+    (show A.card + B.card ≤ 2 * k + 1 by omega)
 
 end W16
