@@ -26,6 +26,7 @@ theorem firstConnection_same_parity_independent_card_bound
     have hne : x ≠ y := by
       intro heq
       have hvals := congrArg (fun z : ZMod n => z.val) heq
+      change x.val = y.val at hvals
       omega
     have hadd : x + (H : ZMod n) = y := by
       have hcast := congrArg (fun t : ℕ => (t : ZMod n)) hxy
