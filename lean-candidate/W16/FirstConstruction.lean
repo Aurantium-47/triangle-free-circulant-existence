@@ -65,7 +65,7 @@ theorem firstConnection_indepNum
   have htri : G.CliqueFree 3 := firstConnection_triangleFree ha hr hn
   have hN : G.IsIndepSet ((G.neighborFinset (0 : ZMod n)) : Set (ZMod n)) := by
     simpa only [SimpleGraph.neighborFinset, Set.coe_toFinset] using
-      SimpleGraph.isIndepSet_neighborSet_of_triangleFree htri (0 : ZMod n)
+      SimpleGraph.isIndepSet_neighborSet_of_triangleFree G htri (0 : ZMod n)
   have hlo : (G.neighborFinset (0 : ZMod n)).card ≤ G.indepNum := hN.card_le_indepNum
   have hdeg : G.degree (0 : ZMod n) = 2 * a + 2 * r + 1 :=
     firstConnection_regular ha hr hn (0 : ZMod n)
