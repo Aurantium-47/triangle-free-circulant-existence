@@ -103,7 +103,8 @@ theorem second_mixed_independent_card_bound
     have h0 : p.2 = (0 : ZMod 2) := Finset.mem_singleton.mp (Finset.mem_product.mp hpA).2
     have h1 : p.2 = (1 : ZMod 2) := Finset.mem_singleton.mp (Finset.mem_product.mp hpB).2
     exact zero_ne_one (h0.symm.trans h1)
-  simpa only [Finset.card_union_of_disjoint hprod, Finset.card_product,
+  rw [Finset.card_union_of_disjoint hprod]
+  simpa only [Finset.product_eq_sprod, Finset.card_product,
     Finset.card_singleton, Nat.mul_one] using
     (show A.card + B.card ≤ 2 * k + 1 by omega)
 
