@@ -35,7 +35,7 @@ jobs:
           import hashlib, json, os, pathlib, shutil, subprocess
           root = pathlib.Path('public-source')
           baseline = '020b52bb138ad0df898e66fdfd06ecb54fd165aa'
-          expected = {'lean-candidate/ImportProbe.lean': 'cf1539588c915deb5b9811e8d37b9e0e90a2c27e6f2fc4db9b7c4472729f329f', 'lean-candidate/lake-manifest.json': '4c20a46d3c85a50c3b0d515d9aa6b6813a6e0e8e6ebc0bf87c8ad8b03570e1ea', 'lean-candidate/lakefile.toml': '7b8ad36db96f180a8661e2c75be0942a2e2f2614fbd131b8a30ec2599425e6e5', 'lean-candidate/lean-toolchain': '55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea', 'lean-candidate/W16/CircularGaps.lean': 'ac47a2bfc93cee9cd436b75c8258f2375f13b5961b1ead33766c8eb0f98f9ff6'}
+          expected = {'lean-candidate/ImportProbe.lean': 'cf1539588c915deb5b9811e8d37b9e0e90a2c27e6f2fc4db9b7c4472729f329f', 'lean-candidate/lake-manifest.json': '4c20a46d3c85a50c3b0d515d9aa6b6813a6e0e8e6ebc0bf87c8ad8b03570e1ea', 'lean-candidate/lakefile.toml': '7b8ad36db96f180a8661e2c75be0942a2e2f2614fbd131b8a30ec2599425e6e5', 'lean-candidate/lean-toolchain': '55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea', 'lean-candidate/W16/CircularGaps.lean': 'a06b81628fc95bdd04735335957f6db25d1a02269253755ef0e7cf8dfdd81328'}
           workflow = '.github/workflows/w16-circular-gaps-probe.yml'
           changed = subprocess.check_output(['git', '-C', str(root), 'diff', '--name-status', baseline, 'HEAD'], text=True).splitlines()
           assert set(changed) == {'A\t' + p for p in list(expected) + [workflow]}, changed
@@ -114,7 +114,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          timeout --signal=TERM --kill-after=10s 900 /usr/bin/time -v lake exe cache get Mathlib.Combinatorics.SimpleGraph.Circulant Mathlib.Combinatorics.SimpleGraph.Clique Mathlib.Data.ZMod.Basic Mathlib.Data.Finset.Sort Mathlib.Algebra.BigOperators.Group.Finset.Basic Mathlib.Algebra.Group.Int.Defs Mathlib.Data.Fintype.Fin
+          timeout --signal=TERM --kill-after=10s 900 /usr/bin/time -v lake exe cache get Mathlib.Combinatorics.SimpleGraph.Circulant Mathlib.Combinatorics.SimpleGraph.Clique Mathlib.Data.ZMod.Basic Mathlib.Data.Finset.Sort Mathlib.Algebra.BigOperators.Group.Finset.Basic Mathlib.Algebra.BigOperators.Group.Finset.Piecewise Mathlib.Algebra.Group.Int.Defs Mathlib.Data.Fintype.Fin
           git diff --exit-code HEAD -- lake-manifest.json lean-toolchain lakefile.toml
           printf '%s\n' 'TRUST: external caches are precompiled inputs, not dependency source rebuilds or independent kernel checks.'
 
