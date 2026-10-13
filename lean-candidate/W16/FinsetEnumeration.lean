@@ -38,6 +38,7 @@ theorem exists_sorted_zmod_enumeration {n : ℕ} [NeZero n]
     obtain ⟨i, hi⟩ := hzrange
     refine ⟨i, ?_⟩
     change (e i : ZMod n) = z
+    change e i = z.val at hi
     rw [hi, ZMod.natCast_zmod_val]
   refine ⟨v, ?_, ?_⟩
   · ext z
