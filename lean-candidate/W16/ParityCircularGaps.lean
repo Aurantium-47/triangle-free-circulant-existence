@@ -30,15 +30,18 @@ theorem exists_two_finRotate_changes {m : ℕ} (f : Fin (m + 1) → ℤ)
     exact hab ((hconst a).trans (hconst b).symm)
   obtain ⟨i, hi⟩ := hex
   have hsum : (∑ j : Fin (m + 1), (f (finRotate (m + 1) j) - f j)) = 0 := by
-    simp [Finset.sum_sub_distrib, Equiv.sum_comp]
+    simp only [Finset.sum_sub_distrib, Equiv.sum_comp, sub_self]
   have hsecond : ∃ j, j ≠ i ∧ f (finRotate (m + 1) j) ≠ f j := by
-    by_contra hn
-    push_neg at hn
+    apply Classical.byContradiction
+    intro hn
+    have hsame (j : Fin (m + 1)) (hji : j ≠ i) :
+        f (finRotate (m + 1) j) = f j :=
+      Classical.byContradiction (fun hd => hn ⟨j, hji, hd⟩)
     have hsingle : (∑ j : Fin (m + 1), (f (finRotate (m + 1) j) - f j)) =
         f (finRotate (m + 1) i) - f i := by
       apply Finset.sum_eq_single i
       · intro j _ hji
-        exact sub_eq_zero.mpr (hn j hji)
+        exact sub_eq_zero.mpr (hsame j hji)
       · simp
     exact hi (sub_eq_zero.mp (hsingle.symm.trans hsum))
   obtain ⟨j, hji, hj⟩ := hsecond
