@@ -20,8 +20,12 @@ theorem sortedCircularGap_pos {m : ℕ} {x : Fin (m + 1) → ℤ}
     0 < sortedCircularGap x circumference i := by
   by_cases hi : i = Fin.last m
   · subst i
-    simp only [sortedCircularGap, circularGap, finRotate_last, if_pos rfl]
-    omega
+    change 0 < (x (finRotate (m + 1) (Fin.last m)) - x (Fin.last m)) +
+      (if Fin.last m = Fin.last m then circumference else 0)
+    rw [finRotate_last, if_pos rfl]
+    change 0 < (x 0 - x (Fin.last m)) + circumference
+    rw [sub_add_eq_add_sub, add_comm (x 0) circumference]
+    exact sub_pos.mpr (sub_lt_iff_lt_add.mp hspan)
   · simpa [sortedCircularGap, circularGap, hi]
       using (sub_pos.mpr (hx ((lt_finRotate_iff_ne_last i).mpr hi)))
 
