@@ -1,0 +1,90 @@
+@W16.exists_agraph : ∀ {n k : Nat} (hk : @LE.le.{0} Nat instLENat (@OfNat.ofNat.{0} Nat 1 (instOfNatNat 1)) k),
+  @Even.{0} Nat instAddNat n →
+    ∀
+      (hlo :
+        @LE.le.{0} Nat instLENat
+          (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat)
+            (@HMul.hMul.{0, 0, 0} Nat Nat Nat (@instHMul.{0} Nat instMulNat) (@OfNat.ofNat.{0} Nat 6 (instOfNatNat 6))
+              k)
+            (@OfNat.ofNat.{0} Nat 2 (instOfNatNat 2)))
+          n),
+      @LE.le.{0} Nat instLENat n
+          (@HMul.hMul.{0, 0, 0} Nat Nat Nat (@instHMul.{0} Nat instMulNat) (@OfNat.ofNat.{0} Nat 8 (instOfNatNat 8))
+            k) →
+        And
+          (@Eq.{1} Nat
+            (@Fintype.card.{0} (ZMod n)
+              (@ZMod.fintype n
+                (@NeZero.mk.{0} Nat (@MulZeroClass.toZero.{0} Nat Nat.instMulZeroClass) n
+                  (@W16.w16Parameters_ne_zero n k hk hlo))))
+            n)
+          (@Exists.{1} (Finset.{0} (ZMod n)) fun (S : Finset.{0} (ZMod n)) =>
+            And
+              (Not
+                (@Membership.mem.{0, 0} (ZMod n) (Finset.{0} (ZMod n)) (@Finset.instMembership.{0} (ZMod n)) S
+                  (@OfNat.ofNat.{0} (ZMod n) 0
+                    (@Zero.toOfNat0.{0} (ZMod n)
+                      (@MulZeroClass.toZero.{0} (ZMod n)
+                        (@NonUnitalNonAssocSemiring.toMulZeroClass.{0} (ZMod n)
+                          (@NonUnitalNonAssocCommSemiring.toNonUnitalNonAssocSemiring.{0} (ZMod n)
+                            (@NonUnitalNonAssocCommRing.toNonUnitalNonAssocCommSemiring.{0} (ZMod n)
+                              (@NonUnitalCommRing.toNonUnitalNonAssocCommRing.{0} (ZMod n)
+                                (@CommRing.toNonUnitalCommRing.{0} (ZMod n) (ZMod.commRing n)))))))))))
+              (And
+                (∀ (x : ZMod n),
+                  Iff (@Membership.mem.{0, 0} (ZMod n) (Finset.{0} (ZMod n)) (@Finset.instMembership.{0} (ZMod n)) S x)
+                    (@Membership.mem.{0, 0} (ZMod n) (Finset.{0} (ZMod n)) (@Finset.instMembership.{0} (ZMod n)) S
+                      (@Neg.neg.{0} (ZMod n)
+                        (@NegZeroClass.toNeg.{0} (ZMod n)
+                          (@SubNegZeroMonoid.toNegZeroClass.{0} (ZMod n)
+                            (@SubtractionMonoid.toSubNegZeroMonoid.{0} (ZMod n)
+                              (@SubtractionCommMonoid.toSubtractionMonoid.{0} (ZMod n)
+                                (@AddCommGroup.toDivisionAddCommMonoid.{0} (ZMod n)
+                                  (@Ring.toAddCommGroup.{0} (ZMod n)
+                                    (@CommRing.toRing.{0} (ZMod n) (ZMod.commRing n))))))))
+                        x)))
+                (And
+                  (@SimpleGraph.CliqueFree.{0} (ZMod n)
+                    (@SimpleGraph.circulantGraph.{0} (ZMod n)
+                      (@AddGroupWithOne.toAddGroup.{0} (ZMod n)
+                        (@Ring.toAddGroupWithOne.{0} (ZMod n) (@CommRing.toRing.{0} (ZMod n) (ZMod.commRing n))))
+                      (@Finset.toSet.{0} (ZMod n) S))
+                    (@OfNat.ofNat.{0} Nat 3 (instOfNatNat 3)))
+                  (And
+                    (@SimpleGraph.IsRegularOfDegree.{0} (ZMod n)
+                      (@SimpleGraph.circulantGraph.{0} (ZMod n)
+                        (@AddGroupWithOne.toAddGroup.{0} (ZMod n)
+                          (@Ring.toAddGroupWithOne.{0} (ZMod n) (@CommRing.toRing.{0} (ZMod n) (ZMod.commRing n))))
+                        (@Finset.toSet.{0} (ZMod n) S))
+                      (fun (v : ZMod n) =>
+                        @SimpleGraph.neighborSetFintype.{0} (ZMod n)
+                          (@SimpleGraph.circulantGraph.{0} (ZMod n)
+                            (@AddGroupWithOne.toAddGroup.{0} (ZMod n)
+                              (@Ring.toAddGroupWithOne.{0} (ZMod n) (@CommRing.toRing.{0} (ZMod n) (ZMod.commRing n))))
+                            (@Finset.toSet.{0} (ZMod n) S))
+                          (@ZMod.fintype n
+                            (@NeZero.mk.{0} Nat (@MulZeroClass.toZero.{0} Nat Nat.instMulZeroClass) n
+                              (@W16.w16Parameters_ne_zero n k hk hlo)))
+                          (fun (a b : ZMod n) =>
+                            @SimpleGraph.instDecidableRelAdjCirculantGraphOfDecidableEqOfDecidablePredMemSet.{0}
+                              (ZMod n)
+                              (@AddGroupWithOne.toAddGroup.{0} (ZMod n)
+                                (@Ring.toAddGroupWithOne.{0} (ZMod n)
+                                  (@CommRing.toRing.{0} (ZMod n) (ZMod.commRing n))))
+                              (@Finset.toSet.{0} (ZMod n) S) (ZMod.decidableEq n)
+                              (fun (a : ZMod n) => @Finset.decidableMem'.{0} (ZMod n) (ZMod.decidableEq n) a S) a b)
+                          v)
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat)
+                        (@HMul.hMul.{0, 0, 0} Nat Nat Nat (@instHMul.{0} Nat instMulNat)
+                          (@OfNat.ofNat.{0} Nat 2 (instOfNatNat 2)) k)
+                        (@OfNat.ofNat.{0} Nat 1 (instOfNatNat 1))))
+                    (@Eq.{1} Nat
+                      (@SimpleGraph.indepNum.{0} (ZMod n)
+                        (@SimpleGraph.circulantGraph.{0} (ZMod n)
+                          (@AddGroupWithOne.toAddGroup.{0} (ZMod n)
+                            (@Ring.toAddGroupWithOne.{0} (ZMod n) (@CommRing.toRing.{0} (ZMod n) (ZMod.commRing n))))
+                          (@Finset.toSet.{0} (ZMod n) S)))
+                      (@HAdd.hAdd.{0, 0, 0} Nat Nat Nat (@instHAdd.{0} Nat instAddNat)
+                        (@HMul.hMul.{0, 0, 0} Nat Nat Nat (@instHMul.{0} Nat instMulNat)
+                          (@OfNat.ofNat.{0} Nat 2 (instOfNatNat 2)) k)
+                        (@OfNat.ofNat.{0} Nat 1 (instOfNatNat 1))))))))

@@ -1,0 +1,491 @@
+{
+  "schema_version": 1,
+  "record_kind": "summary of an existing successful GitHub Actions run; no new execution",
+  "repository_url": "https://github.com/Aurantium-47/triangle-free-circulant-existence",
+  "run_url": "https://github.com/Aurantium-47/triangle-free-circulant-existence/actions/runs/38442507918",
+  "run_id": 38442507918,
+  "job_id": 115452413854,
+  "run_attempt": 1,
+  "event": "push",
+  "conclusion": "success",
+  "started_at_utc": "2026-10-13T17:54:58Z",
+  "updated_at_utc": "2026-10-13T17:56:26Z",
+  "source_commit": "01c614aa6e29c0fc88175fca249b17b5cfe65d1d",
+  "source_tree": "9aa33777ca0efea32ce8ddb037c5d7dca5387080",
+  "lean_version": "4.19.0",
+  "lean_commit": "6caaee842e94",
+  "lean_toolchain": "leanprover/lean4:v4.19.0",
+  "dependency_revisions": [
+    {
+      "name": "mathlib",
+      "revision": "c44e0c8ee63ca166450922a373c7409c5d26b00b"
+    },
+    {
+      "name": "plausible",
+      "revision": "77e08eddc486491d7b9e470926b3dbe50319451a"
+    },
+    {
+      "name": "LeanSearchClient",
+      "revision": "25078369972d295301f5a1e53c3e5850cf6d9d4c"
+    },
+    {
+      "name": "importGraph",
+      "revision": "e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b"
+    },
+    {
+      "name": "proofwidgets",
+      "revision": "c4919189477c3221e6a204008998b0d724f49904"
+    },
+    {
+      "name": "aesop",
+      "revision": "5d50b08dedd7d69b3d9b3176e0d58a23af228884"
+    },
+    {
+      "name": "Qq",
+      "revision": "fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02"
+    },
+    {
+      "name": "batteries",
+      "revision": "f5d04a9c4973d401c8c92500711518f7c656f034"
+    },
+    {
+      "name": "Cli",
+      "revision": "02dbd02bc00ec4916e99b04b2245b30200e200d0"
+    }
+  ],
+  "workflow_path": ".github/workflows/w16-circular-gaps-probe.yml",
+  "workflow_sha256": "f586188ff25069f4779249b93b0a06b9ebf483f4bd62f262bc0c8394cf1d730d",
+  "project_module_count": 19,
+  "w16_module_count": 18,
+  "import_probe_module_count": 1,
+  "project_modules_freshly_compiled": [
+    {
+      "module": "ImportProbe",
+      "source_sha256": "cf1539588c915deb5b9811e8d37b9e0e90a2c27e6f2fc4db9b7c4472729f329f",
+      "olean_sha256": "8f0de66441f74312a2e0e5fb80d8f98e56d836d47feb99bf52f6cbbbacd86023"
+    },
+    {
+      "module": "W16.CircularGaps",
+      "source_sha256": "a06b81628fc95bdd04735335957f6db25d1a02269253755ef0e7cf8dfdd81328",
+      "olean_sha256": "4657ea000a8aa7e0f5aa38e7179806573ff2edf9b11ae334b2048f53e3e57a4a"
+    },
+    {
+      "module": "W16.SortedCircularGaps",
+      "source_sha256": "231205bf0240737a1783297f3a037a40121d4826df851b7163e4faf4e694ad2b",
+      "olean_sha256": "9c17306da2830a4e96a35a381246d00af7e20aade15e2a654c7ad5b92e36ad7b"
+    },
+    {
+      "module": "W16.ParityCircularGaps",
+      "source_sha256": "115cb3bac90b54852fc7b8cf9203efac9ae20081d87dc8df42edb6c998fece20",
+      "olean_sha256": "e06a747db667b3a19ee7ca1f37c1619541b1ad38c9ac1ce556fecec08be893b7"
+    },
+    {
+      "module": "W16.GapBound",
+      "source_sha256": "9eb377ec23d4ae8063807fff14d15523021bcbb2accaaf70bd58e7002dd04275",
+      "olean_sha256": "5effa8ae17e47e4eb55c5ae567f4480715fddccf2c8b6f2c80cf700b2e0733a9"
+    },
+    {
+      "module": "W16.GraphGap",
+      "source_sha256": "dd45e696a66ab6e63022b927f6e148f8ca2f57a133f303ef3506249de563eddc",
+      "olean_sha256": "d403fec3377c79acd2378753b79547c90000a66b26a8136c6054b5ff196ac1a4"
+    },
+    {
+      "module": "W16.FinsetEnumeration",
+      "source_sha256": "30cd962aa0542900bab770dedd8e8e9e26ecc02d5eef73a01cebccdb95743b00",
+      "olean_sha256": "eb678b1d748878317ed5b7ccbd7978b29fbaac535cbbf187f8a5eaae4a39cf59"
+    },
+    {
+      "module": "W16.FirstIndependentBound",
+      "source_sha256": "1086f13a6d1d80adfe92d29776d869b4c1b489fdd756cce76f2ecbb6a2ae08d3",
+      "olean_sha256": "8fe703a77817b5464687af90ca715ee5cea91f9ecaaa8f9d2134976281f60dc4"
+    },
+    {
+      "module": "W16.FirstTriangleFree",
+      "source_sha256": "abde1bba6a2a67e2de21b816a4d47adaebee907217b203b0d1e1921df2b94a51",
+      "olean_sha256": "ad5cab3e97775f27bde3c9422fd673fa5e6beef6047ce5571c0e431853fad2f7"
+    },
+    {
+      "module": "W16.FirstConnectionCard",
+      "source_sha256": "d523587e1b2876cd38bbdf46ee05a3504c468924def7ff7ca03ed3a615558988",
+      "olean_sha256": "575ad9d1cf172ee49de8109c0a7b448cf7a1b0ba6cbd0046b0244d37107fa570"
+    },
+    {
+      "module": "W16.FirstConstruction",
+      "source_sha256": "8c884d5836df61c6ca5802382b0d629751d457fab22489e51a787d7a416045e8",
+      "olean_sha256": "d5bcf39f04ed490bf6c25f730fff40ff11a8f001cc5dddf43a7f99906fc4025e"
+    },
+    {
+      "module": "W16.CyclicStep",
+      "source_sha256": "dbf7a3e348c7d262bd9fc12c1ba8c354d034ba10356948e7159538232d38abe6",
+      "olean_sha256": "32ddb9938c092b2e57bd271f4fdea0d8b019282071514e5ec644a7a905c245b8"
+    },
+    {
+      "module": "W16.CyclicInterval",
+      "source_sha256": "04ede15fe17c9aaab22db96ee444be4ca485de66941c6a181910d8b3bc856ac6",
+      "olean_sha256": "1e4a5e90dedebb2ee0e634eabdbb35709cac014ddb86ffe4ad301aace330a73c"
+    },
+    {
+      "module": "W16.SecondMixedBridge",
+      "source_sha256": "d0bc827dc88bb731e14ffa22835ccf712feace3f435886614b8c47d6a3735036",
+      "olean_sha256": "79f36c3f0e0e862a81315d55dee83c246fbc6ffbab2a60c39b85ef0ec95a5ab0"
+    },
+    {
+      "module": "W16.SecondTriangleFree",
+      "source_sha256": "0fb2349b88bd93a8abf418d2b165838c77e991aa1cd32bd4a9d0994ee251be32",
+      "olean_sha256": "b30949aeb10cd8c40445c552734acd86daa186622cb1608558397dfd09f45857"
+    },
+    {
+      "module": "W16.SecondConnectionCard",
+      "source_sha256": "98fa1ddba19959c9924d8b982cc075fc34e5c41f45846d6611ebe817cc89361a",
+      "olean_sha256": "1ff40d1775f1fb44bf60f42509566a77941adc4c27cc82b9641d2389ae6e0428"
+    },
+    {
+      "module": "W16.SecondIndependent",
+      "source_sha256": "6881d02ff9f90d4df037faffab15ec26ba70c7ac1e08c50f33e511a5c87f1ff0",
+      "olean_sha256": "2c353ceeccd0fbb2a9eb5fab36920e529cf86895b3df48bb45f471148161d930"
+    },
+    {
+      "module": "W16.SecondCyclic",
+      "source_sha256": "5def6a2ed872e4bac331c80e5f3eded254bdd354323bc10e0ff3fdb6a0f1d3c7",
+      "olean_sha256": "c3387bf027ee68469ebaf22b46eecd75e0f6d7ac176a38eab5e65c8f51be66bb"
+    },
+    {
+      "module": "W16.Existence",
+      "source_sha256": "68cbd8e9abf18c0ba9d0a0b935d50830a784910d04dc95a14e2482813a7cfdf2",
+      "olean_sha256": "604024f6b8a1ef1008d3bde33998e5a2b5dc1abc173982b09d60c29d61223a80"
+    }
+  ],
+  "fresh_project_imports_verified": 19,
+  "individually_checked_complete_types": 61,
+  "individually_checked_transitive_axiom_lists": 61,
+  "observed_transitive_axioms": {
+    "W16.card_cyclicIntervalSum_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.circulantPreimageIso": [
+      "propext",
+      "Quot.sound"
+    ],
+    "W16.cyclicIntervalSum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.exists_agraph": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.exists_sorted_zmod_enumeration": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.exists_two_finRotate_changes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.exists_two_odd_sortedCircularGaps": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.finalParameter_split": [
+      "propext",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_enumeration": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_finset_card": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_indepNum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_independent_card_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_mixed_independent_card_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_neg_mem": [
+      "propext",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_odd_gap_lower_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_regular": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_same_parity_independent_card_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_sum_not_mem": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_triangleFree": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_val_cases": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstConnection_zero_not_mem": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstConstruction_properties": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.firstParameters_ne_zero": [
+      "propext",
+      "Quot.sound"
+    ],
+    "W16.gap_sum_lower_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.graphIso_indepNum_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.graphIso_indepNum_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.mem_cyclicIntervalSum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.mem_secondLayerVertices": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.odd_sortedCircularGap_iff_color_change": [
+      "propext",
+      "Quot.sound"
+    ],
+    "W16.secondConnectionSet": [
+      "propext",
+      "Quot.sound"
+    ],
+    "W16.secondConnection_enumeration": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondConnection_finset_card": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondConnection_indepNum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondConnection_independent_card_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondConnection_neg_mem": [
+      "propext",
+      "Quot.sound"
+    ],
+    "W16.secondConnection_regular": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondConnection_sum_not_mem": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondConnection_triangleFree": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondConnection_val_cases": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondConnection_zero_not_mem": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondCrossSum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondCyclicConstruction_exists": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondCyclicEquiv": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondCyclicParameters_ne_zero": [
+      "propext",
+      "Quot.sound"
+    ],
+    "W16.secondCyclic_vertex_card": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondLayerVertices": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondLayer_decomposition": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondParameters_coprime_two": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.secondParameters_ne_zero": [
+      "propext",
+      "Quot.sound"
+    ],
+    "W16.secondProductConstruction_properties": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.second_cross_sum_disjoint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.second_mixed_independent_card_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.second_single_layer_independent_card_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.sortedCircularGap_count_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.sortedCircularGap_pos": [
+      "propext",
+      "Quot.sound"
+    ],
+    "W16.sortedCircularGaps_pos_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.sum_circularGaps": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.w16Parameters_ne_zero": [
+      "propext",
+      "Quot.sound"
+    ],
+    "W16.zmod_one_step_growth": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "W16.zmod_sortedCircularGap_eq_sub": [
+      "propext",
+      "Quot.sound"
+    ],
+    "W16.zmod_step_invariant_eq_univ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "additional_full_definition_prints": [
+    "W16.circularGap",
+    "W16.sortedCircularGap",
+    "W16.parityColor",
+    "W16.zmodCoordinates",
+    "W16.firstConnectionSet"
+  ],
+  "additional_definition_axiom_scope": "These five definitions were printed in full, not separately subjected to #print axioms. Their dependencies are covered transitively by W16.exists_agraph.",
+  "main_theorem": "W16.exists_agraph",
+  "main_theorem_type_file": "MAIN_THEOREM_TYPE.txt",
+  "main_theorem_type_sha256": "c9b474926efbb52d9163b6942f51e9f6abf6a830678ed1f9484bfaa0a410e4d6",
+  "main_theorem_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "guarded_command_count": 21,
+  "all_guarded_command_exit_codes_zero": true,
+  "all_guarded_command_abort_reasons_null": true,
+  "post_build_assertions_executed": true,
+  "peak_sampled_group_rss_bytes": 1598263296,
+  "peak_sampled_group_swap_bytes": 0,
+  "scope": "All k >= 1 and even n with 6*k + 2 <= n <= 8*k; one finite connection set on ZMod n, n vertices, zero exclusion, negation closure, no triangles, regular degree and maximum independence number 2*k + 1.",
+  "trusted_inputs": [
+    "Lean 4.19.0 implementation and standard logical axioms",
+    "external precompiled dependency caches at the recorded revisions"
+  ],
+  "not_performed": [
+    "complete dependency-source rebuild",
+    "full dependency replay",
+    "independent-kernel check",
+    "independent human mathematical review",
+    "bibliographic priority certification"
+  ],
+  "output_hash_note": "Recorded .olean hashes identify this run's outputs; no cross-platform byte-for-byte reproducibility claim is made."
+}

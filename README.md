@@ -20,7 +20,27 @@ No claim of bibliographic priority is made.
 - [Chinese summary](SUMMARY_ZH.md)
 - [References and attribution](REFERENCES.md)
 - [Reproduction instructions](REPRODUCIBILITY.md)
+- [Lean formalization and its verification scope](FORMALIZATION.md)
 - [Rights and licensing notice](RIGHTS_AND_LICENSE.md)
+
+## Lean formalization
+
+The full existence statement is formalized as `W16.exists_agraph` in
+[Existence.lean](lean-candidate/W16/Existence.lean). With Lean 4.19.0 and the
+pinned mathlib revision, [GitHub Actions run 38442507918](https://github.com/Aurantium-47/triangle-free-circulant-existence/actions/runs/38442507918)
+successfully compiled all 19 project modules at source commit
+[`01c614aa6e29c0fc88175fca249b17b5cfe65d1d`](https://github.com/Aurantium-47/triangle-free-circulant-existence/commit/01c614aa6e29c0fc88175fca249b17b5cfe65d1d).
+The run checked complete types and transitive axiom dependencies for 61
+declarations. Five further basic definitions were printed, rather than each
+receiving a separate axiom check; their dependencies are covered by the final
+theorem's transitive check. Its axioms are `propext`, `Classical.choice` and
+`Quot.sound`. See [FORMALIZATION.md](FORMALIZATION.md) for the exact statement,
+the recorded evidence and the trusted external dependency-cache boundary.
+
+The PDF and LaTeX manuscript remain the original **v0.1.0** documents. Their
+statement that the result had not been formalized describes that version's
+status; this documentation update supplies the subsequent formalization record.
+The manuscript, finite-check code and recorded finite results are unchanged.
 
 ## Reproduction
 
@@ -48,8 +68,10 @@ The supplied PDF has five pages. All fonts are embedded.
 
 ## Status and files
 
-This work was prepared with AI assistance. It has not yet been reviewed by
-a human expert or formalized in a proof assistant. It has not undergone
+This work was prepared with AI assistance. The Lean formalization has the
+recorded verification scope described above; external precompiled dependencies
+remain trusted inputs. No independent-kernel check or complete dependency-source
+rebuild is claimed. It has not yet been reviewed by a human expert or undergone
 journal peer review. The literature comparison does not establish priority.
 
 PUBLIC_FILES.txt is the explicit list of files intended for distribution.
