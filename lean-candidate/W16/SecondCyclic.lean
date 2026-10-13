@@ -107,8 +107,7 @@ theorem secondCyclicConstruction_exists
       simpa only [neg_neg] using secondConnection_neg_mem ht htk hkt hm (-(e x)) hx
   · rw [hS]
     exact htri
-  · rw [hS]
-    exact hreg
+  · simpa only [G, hS] using hreg
   · rw [hS]
     exact hind
 
