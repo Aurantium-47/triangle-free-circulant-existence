@@ -107,7 +107,16 @@ theorem secondCyclicConstruction_exists
       simpa only [neg_neg] using secondConnection_neg_mem ht htk hkt hm (-(e x)) hx
   · rw [hS]
     exact htri
-  · simpa only [G, hS] using hreg
+  · intro v
+    have hN : (SimpleGraph.circulantGraph (S : Set (ZMod n))).neighborFinset v =
+        G.neighborFinset v := by
+      ext w
+      simp only [SimpleGraph.mem_neighborFinset]
+      change (SimpleGraph.circulantGraph (S : Set (ZMod n))).Adj v w ↔
+        (SimpleGraph.circulantGraph (e ⁻¹' Q)).Adj v w
+      rw [hS]
+    change ((SimpleGraph.circulantGraph (S : Set (ZMod n))).neighborFinset v).card = 2 * k + 1
+    exact (congrArg Finset.card hN).trans (hreg v)
   · rw [hS]
     exact hind
 
