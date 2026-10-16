@@ -1,4 +1,4 @@
-name: W16 circular gaps candidate (not the full theorem)
+name: Triangle-free circulant existence - Lean verification
 
 'on':
   push:
